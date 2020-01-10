@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { StateService } from 'src/app/services/gbl/state.service';
-import { AlertService } from 'src/app/services/utl/ctrl.service';
+import { AlertService, ModalService } from 'src/app/services/utl/ctrl.service';
 import { Router } from '@angular/router';
 import { AFFSService } from 'src/app/services/api/fire.service';
+import { ItemComponent } from 'src/app/components/view/item/item.component';
 
 @Component({
   selector: 'app-restaurant',
@@ -15,6 +16,7 @@ export class RestaurantPage implements OnInit {
     private state: StateService,
     private db: AFFSService,
     private route: Router,
+    private modal: ModalService,
     private alert: AlertService
   ) { }
 
@@ -23,6 +25,7 @@ export class RestaurantPage implements OnInit {
 
   restaurant: any = null;
   tables: Array<any> = [];
+  items:any = null;
 
   ionViewDidEnter() {
     this.restaurant = this.state.get('restaurant');
@@ -30,6 +33,7 @@ export class RestaurantPage implements OnInit {
     .subscribe(t => {
       this.tables = t;
     })
+    this.items = this.db.cGet(`restaurants/${this.restaurant.id}/items`)
   }
 
   view: any = 'menu';
@@ -46,6 +50,15 @@ export class RestaurantPage implements OnInit {
     }
     
     this.route.navigateByUrl('admin/create-qr')
+  }
+
+  newItem() {
+    this.modal.show({
+      component: ItemComponent,
+      items: {
+        rid: this.restaurant.id
+      }
+    })
   }
 
 }

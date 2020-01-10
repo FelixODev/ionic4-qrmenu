@@ -7,14 +7,18 @@ import { IonicModule } from '@ionic/angular';
 import { RestaurantPageRoutingModule } from './restaurant-routing.module';
 
 import { RestaurantPage } from './restaurant.page';
+import { ItemComponent } from 'src/app/components/view/item/item.component';
 
 @NgModule({
+  entryComponents: [
+    ItemComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     RestaurantPageRoutingModule
   ],
-  declarations: [RestaurantPage]
+  declarations: [RestaurantPage, ItemComponent]
 })
 export class RestaurantPageModule {}

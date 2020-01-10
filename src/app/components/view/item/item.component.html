@@ -11,7 +11,7 @@
     </ion-buttons>
 
     <ion-title>
-      {{ action }} Restaurant
+      {{ action }} Item
     </ion-title>
 
     <ion-buttons slot="end">
@@ -30,9 +30,9 @@ class="ion-padding"
     (click)="snap()"
     >
       <div 
-      *ngIf="place?.photoURL; else noPhoto;"
+      *ngIf="item?.photoURL; else noPhoto;"
       >
-        <img src="{{place?.photoURL}}" alt="">
+        <img src="{{item?.photoURL}}" alt="">
       </div>
       <ng-template 
       #noPhoto
@@ -52,12 +52,13 @@ class="ion-padding"
     <!-- capture="capture" -->
 
     <ion-label>
-      {{ place?.name || 'Name' }}
+      <span class="ion-float-right">
+        ${{price}}
+      </span>
+      {{ item?.name || 'Name' }}
       <br>
       <ion-note class="medium">
-        {{ place?.address?.line1 || 'Address' }},
-        {{ place?.address?.city || 'City' }}
-        {{ place?.address?.state || 'State/Province' }}
+        {{ item?.desc || 'Description' }}
       </ion-note>
     </ion-label>
   </ion-item>
@@ -65,31 +66,17 @@ class="ion-padding"
 
   <ion-item lines="inset">
     <ion-label>Name</ion-label>
-    <ion-input [(ngModel)]="place.name"></ion-input>
+    <ion-input [(ngModel)]="item.name"></ion-input>
   </ion-item>
 
-  <h4 class="ion-margin-horizontal">
-    <ion-text color="medium">
-      Address
-    </ion-text>
-  </h4>
-
   <ion-item lines="inset">
-    <ion-label>Address</ion-label>
-    <ion-input [(ngModel)]="place.address.line1">
+    <ion-label>Description</ion-label>
+    <ion-input [(ngModel)]="item.desc">
       </ion-input>
   </ion-item>
   <ion-item lines="inset">
-    <ion-label>City</ion-label>
-    <ion-input [(ngModel)]="place.address.city"></ion-input>
-  </ion-item>
-  <ion-item lines="inset">
-    <ion-label>State/Province</ion-label>
-    <ion-input [(ngModel)]="place.address.state"></ion-input>
-  </ion-item>
-  <ion-item lines="inset">
-    <ion-label>Country</ion-label>
-    <ion-input [(ngModel)]="place.address.country"></ion-input>
+    <ion-label>Price</ion-label>
+    <ion-input type="number" [(ngModel)]="price"></ion-input>
   </ion-item>
 
   <ion-button

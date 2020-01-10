@@ -12,7 +12,7 @@ import { RestaurantComponent } from 'src/app/components/view/restaurant/restaura
 })
 export class AdminPage implements OnInit {
 
-  restaurants: Array<any> = [{}];
+  restaurants: Array<any> = [];
 
   constructor(
     public state: StateService,

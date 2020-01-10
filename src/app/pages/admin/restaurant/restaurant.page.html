@@ -19,6 +19,7 @@
   class="ion-padding"
   mode="ios"
   (ionChange)="segmentChanged($event)"
+  value="menu"
   >
     <ion-segment-button 
     mode="ios"
@@ -44,7 +45,7 @@
     >
       <ion-col 
       size="6"
-      *ngFor="let item of restaurant?.items"
+      *ngFor="let item of (items | async)"
       >
         <ion-card 
         mode="ios" 
@@ -102,6 +103,7 @@
     mode="ios"
     expand="full"
     class="ion-margin"
+    (click)="newItem()"
     >
       Add Item
     </ion-button>

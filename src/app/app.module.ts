@@ -19,6 +19,7 @@ import { LoginComponent } from './components/view/login/login.component';
 import { StateService } from './services/gbl/state.service';
 import { CartModule } from './modules/cart/cart.module';
 import { AdminPageModule } from './pages/admin/admin.module';
+import { RestaurantPageModule } from './pages/admin/restaurant/restaurant.module';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { AdminPageModule } from './pages/admin/admin.module';
     AngularFireStorageModule, // storage
     CartModule,
     AdminPageModule,
+    RestaurantPageModule,
   ],
   providers: [
     StateService,

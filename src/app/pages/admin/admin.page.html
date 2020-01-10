@@ -47,8 +47,7 @@
           class="full"
           >
             <img
-            *ngIf="restaurant.items || restaurant.photoURL" 
-            src="{{ restaurant?.photoURL || restaurant?.items[0].photoURL }}"
+            src="{{ restaurant?.photoURL || 'https://png.pngtree.com/png-vector/20190308/ourlarge/pngtree-restaurant-vector-icon-png-image_785538.jpg' }}"
             alt=""
             >
           </div>
@@ -65,13 +64,13 @@
         {{ restaurant?.address?.city || '' }}
         {{ restaurant?.address?.state || '' }}
       </ion-label>
-      <ion-button
+      <!-- <ion-button
       slot="end"
       mode="ios"
       (click)="go(restaurant)"
       >
         Edit
-      </ion-button>
+      </ion-button> -->
     </ion-item>
   </div>
 
