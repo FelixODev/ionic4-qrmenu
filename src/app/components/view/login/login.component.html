@@ -1,0 +1,51 @@
+<ion-content
+color="none"
+>
+  <div
+  >
+  <!-- style="
+  height: 100%; 
+  background-image: url('/assets/login.png'); 
+  background-size: cover; 
+  background-color: transparent !important;
+  " -->
+    <ion-row
+    class="ion-align-items-center"
+    >
+    <!-- style="height: 100%; background-color: #ff2525a5;" -->
+      <ion-col
+      class="ion-text-center"
+      >
+        <!-- <img 
+        src="/assets/logo.png" 
+        alt=""
+        class="ion-padding"
+        style="display:block; margin: auto; margin-bottom: 150px;"
+        width="150px"
+        > -->
+
+        <!-- <ion-item>  
+
+        </ion-item> -->
+
+        <!-- <ion-button>
+          Sign with Email
+        </ion-button> -->
+        
+        <ion-button
+        color="light"
+        mode="ios"
+        expand="full"
+        (click)="press.play(); loginWith('GoogleAuthProvider')"
+        >
+          Sign in with Google
+          <ion-icon
+          class="ion-float-right"
+          name="logo-google"
+          class="ion-margin-start ion-margin-vertical"
+          ></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

@@ -1,0 +1,80 @@
+<ion-header mode="ios" >
+    <ion-toolbar mode="ios" >
+  
+      <ion-buttons slot="start">
+        <ion-chip color="primary">
+          Table {{ table?.no || table?.name || '' }}
+        </ion-chip>
+      </ion-buttons>
+  
+      <ion-title>
+          {{ restaurant?.name || 'Menu' }}
+      </ion-title>
+  
+      <ion-buttons slot="end">
+        <cart-button class="cart-button"></cart-button>
+      </ion-buttons>
+  
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+  
+    <div
+    class="ion-padding-top ion-padding-horizontal" 
+    *ngIf="restaurant"
+    >
+  
+      <ion-row
+      >
+        <ion-col 
+        size="6"
+        *ngFor="let dish of restaurant?.items"
+        >
+          <ion-card 
+          mode="ios" 
+          class="ion-no-margin ion-text-center"
+          (click)="add(dish)"
+          >
+            <div class="img-center"
+            style="height: 125px;">
+              <img src="{{ dish?.photoURL }}" alt="">
+            </div>
+          </ion-card>
+          <ion-label>
+            <span class="ion-float-right">
+              {{ (dish?.price / 100) | currency:"USD":"symbol":"1.2-2" }}
+            </span>
+            {{ dish?.name }}
+
+          </ion-label>
+        </ion-col>
+      </ion-row>
+
+    </div>
+  
+    <!-- <ng-template #noR>
+    </ng-template> -->
+    <ion-button
+    mode="ios"
+    expand="full"
+    class="ion-margin"
+    (click)="send()"
+    *ngIf="(cart?.priceSubject | async) as total; else noTotal;"
+    >
+      Complete Order: {{ total/100 | currency }}
+    </ion-button>
+
+    <ng-template #noTotal>
+      <ion-button
+      mode="ios"
+      expand="full"
+      class="ion-margin"
+      [disabled]="true"
+      >
+        Complete Order
+      </ion-button>
+    </ng-template>
+  
+  </ion-content>
+  

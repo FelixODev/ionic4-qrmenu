@@ -1,0 +1,120 @@
+<ion-header mode="ios" >
+    <ion-toolbar mode="ios" >
+  
+      <ion-buttons slot="start">
+        <ion-back-button
+        defaultHref="/admin"
+        ></ion-back-button>
+      </ion-buttons>
+
+    <ion-title>{{ restaurant?.name || 'Restaurant'}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content>
+
+  <ion-segment 
+  class="ion-padding"
+  mode="ios"
+  (ionChange)="segmentChanged($event)"
+  >
+    <ion-segment-button 
+    mode="ios"
+    value="menu"
+    >
+      <ion-label>Menu</ion-label>
+    </ion-segment-button>
+    <ion-segment-button 
+    mode="ios"
+    value="tables"
+    >
+      <ion-label>Tables</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  
+  <div
+  class="ion-padding-horizontal" 
+  *ngIf="restaurant;"
+  >
+
+    <ion-row
+    *ngIf="view == 'menu'"
+    >
+      <ion-col 
+      size="6"
+      *ngFor="let item of restaurant?.items"
+      >
+        <ion-card 
+        mode="ios" 
+        class="ion-no-margin ion-text-center"
+        >
+          <div class="img-center"
+          style="height: 125px;">
+            <img src="{{ item?.photoURL }}" alt="">
+          </div>
+        </ion-card>
+        <ion-label>
+          <span class="ion-float-right">
+            {{ (item?.price / 100) | currency:"USD":"symbol":"1.2-2" }}
+          </span>
+          {{ item?.name }}
+
+        </ion-label>
+      </ion-col>
+    </ion-row>
+
+    <div
+    *ngIf="view == 'tables'"
+    >
+      <ion-item
+      lines="none"
+      *ngFor="let table of tables"
+      >
+        <ion-icon 
+        name="chair"
+        slot="start"
+        style="background: #f4f4f4; border-radius: 50%;"
+        ></ion-icon>
+        <ion-label>
+          Table {{ table?.name || table?.no || 'No' }}
+        </ion-label>
+        <ion-button
+        slot="end"
+        mode="ios"
+        (click)="go(table)"
+        >
+          Edit
+        </ion-button>
+      </ion-item>
+    </div>
+
+  </div>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+
+    <ion-button
+    *ngIf="view == 'menu'"
+    mode="ios"
+    expand="full"
+    class="ion-margin"
+    >
+      Add Item
+    </ion-button>
+    
+
+    <ion-button
+    *ngIf="view == 'tables'"
+    mode="ios"
+    expand="full"
+    class="ion-margin"
+    (click)="go()"
+    >
+      Add Table
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

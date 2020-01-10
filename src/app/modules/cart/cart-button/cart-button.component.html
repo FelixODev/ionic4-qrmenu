@@ -1,0 +1,15 @@
+
+<ion-button color="primary" (click)="showCart($event)">
+  <ion-icon
+  name="basket"
+  style="margin-left: 5px;"
+  ></ion-icon>
+  <ion-badge 
+  color="light"
+  size="small"
+  >
+    <ion-text color="primary">
+      {{ (cart?.quantitySubject | async) || 0 }}
+    </ion-text>
+  </ion-badge>
+</ion-button>

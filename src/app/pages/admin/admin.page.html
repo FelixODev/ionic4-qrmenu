@@ -1,0 +1,78 @@
+<ion-header mode="ios" >
+  <ion-toolbar mode="ios" >
+
+    <ion-buttons slot="start">
+      <ion-back-button
+      defaultHref="/"
+      ></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Admin</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button *ngIf="state?.user as user;">
+        <ion-avatar style="height: 1.8em; width: 1.8em;">
+          <img src="{{ user?.photoURL }}" alt="">
+        </ion-avatar>
+      </ion-button>
+    </ion-buttons>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-fab position="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button
+    mode="ios"
+    expand="full"
+    class="ion-margin"
+    (click)="newRestaurant()"
+    >
+      <ion-icon
+      name="add"
+      ></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <div class="ion-margin">  
+    <ion-item
+    lines="none"
+    *ngFor="let restaurant of restaurants"
+    (click)="go(restaurant)"
+    >
+      <ion-thumbnail slot="start" class="img-center">
+          <div
+          *ngIf="restaurant; else noPhoto;"
+          class="full"
+          >
+            <img
+            *ngIf="restaurant.items || restaurant.photoURL" 
+            src="{{ restaurant?.photoURL || restaurant?.items[0].photoURL }}"
+            alt=""
+            >
+          </div>
+          <ng-template #noPhoto
+          class="full"
+          >
+            <img src="https://png.pngtree.com/png-vector/20190308/ourlarge/pngtree-restaurant-vector-icon-png-image_785538.jpg" alt="">
+          </ng-template>
+      </ion-thumbnail>
+      <ion-label>
+        {{ restaurant?.name || 'Restaurant' }}
+        <br>
+        {{ restaurant?.address?.line1 || 'Address' }}
+        {{ restaurant?.address?.city || '' }}
+        {{ restaurant?.address?.state || '' }}
+      </ion-label>
+      <ion-button
+      slot="end"
+      mode="ios"
+      (click)="go(restaurant)"
+      >
+        Edit
+      </ion-button>
+    </ion-item>
+  </div>
+
+</ion-content>

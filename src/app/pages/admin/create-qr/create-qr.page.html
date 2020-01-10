@@ -1,0 +1,101 @@
+<ion-header mode="ios" >
+  <ion-toolbar mode="ios" >
+
+    <ion-buttons slot="start">
+      <ion-back-button
+      icon="close"
+      defaultHref="admin/restaurant"
+      ></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Table</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+
+
+<ion-content>
+
+  <ion-row 
+  class="ion-text-center"
+  >
+    <ion-col
+    >
+      <ngx-qrcode 
+      [qrc-element-type]="elementType" 
+      [qrc-value] = "value"
+      >
+      </ngx-qrcode>
+    </ion-col>
+  </ion-row>
+
+  <ion-list
+  class="ion-padding">
+    <ion-item 
+    mode="ios"
+    *ngIf="table?.id"
+    >
+      <ion-label>
+        ID:
+      </ion-label>
+      <ion-input mode="ios"
+      [(ngModel)]="table.id" 
+      disabled
+      >
+      </ion-input>
+    </ion-item>
+    <ion-item mode="ios">
+      <ion-label>
+        Name:
+      </ion-label>
+      <ion-input mode="ios"
+      [(ngModel)]="table.name" 
+      (ionChange)="URL($event)"
+      >
+      </ion-input>
+    </ion-item>
+    <ion-item mode="ios">
+      <ion-label>
+        No:
+      </ion-label>
+      <ion-input mode="ios"
+      [(ngModel)]="table.no"
+      (ionChange)="URL($event)"
+      >
+      </ion-input>
+    </ion-item>
+    <ion-item mode="ios">
+      <ion-label>
+        Area:
+      </ion-label>
+      <ion-input mode="ios"
+      [(ngModel)]="table.area"
+      (ionChange)="URL($event)"
+      >
+      </ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-button
+  mode="ios"
+  expand="full"
+  class="ion-margin"
+  (click)="save()"
+  >
+    Save QR Code
+  </ion-button>
+
+  <ion-button
+  mode="ios"
+  expand="full"
+  color="light"
+  class="ion-margin"
+  (click)="delete()"
+  >
+    Delete
+  </ion-button>
+
+
+</ion-content>

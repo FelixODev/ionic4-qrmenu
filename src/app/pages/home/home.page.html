@@ -1,0 +1,112 @@
+<ion-header mode="ios" >
+  <ion-toolbar mode="ios" >
+
+    <ion-buttons slot="start">
+    </ion-buttons>
+
+    <ion-title>
+      Mobile Menu
+    </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button *ngIf="state?.user as user; else noUser;">
+        <ion-avatar style="height: 1.8em; width: 1.8em;">
+          <img src="{{ user?.photoURL }}" alt="">
+        </ion-avatar>
+      </ion-button>
+      <ng-template #noUser>
+        <ion-button 
+        color="primary"
+        (click)="login()"
+        >
+          Login
+          <!-- <ion-icon
+          name="lock"
+          style="margin-left: 5px;"
+          ></ion-icon> -->
+        </ion-button>
+      </ng-template>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-row 
+  class="ion-text-center ion-margin-horizontal"
+  style="height: 100%;"
+  >
+    <ion-col
+    size="12"
+    >
+      <h1 style="font-size: 25px; font-weight: 600;">
+        You don't have to wait.
+      </h1>
+      <ion-label>
+        Get the order started right at the table.
+      </ion-label>
+
+      <ion-row>
+        <ion-col size="4"
+        *ngFor="let card of [
+        {text: 'Simple', icon: 'restaurant'},
+        { text: 'Fast', icon: 'pizza' },
+        {text: 'Easy', icon: 'happy'}
+        ]"
+        >
+          <ion-card
+          mode="ios"
+          class="ion-padding"
+          >
+            <ion-icon 
+            color="primary"
+            name="{{ card?.icon || 'restaurant'}}"
+            style="font-size: 50px;">
+            </ion-icon>
+            <br>
+            <ion-text>
+              {{ card?.text }}
+            </ion-text>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <ion-label>
+        Orders are made simply by using a smartphone to scan the QR code positioned on the table. 
+      </ion-label>
+      
+      <br>
+      <ion-icon 
+      name="phone-portrait"
+      class="ion-margin ion-padding"
+      style="font-size: 75px; background: #f4f4f4; border-radius: 50%;"
+      color="primary"
+      ></ion-icon>
+      <br>
+
+      <ion-label>
+        A menu will pop up on the screen and ordering takes seconds.
+      </ion-label>
+
+      <ion-label>
+          The order is then sent to the kitchen and that's it.
+      </ion-label>
+
+      <ion-button
+      mode="ios"
+      expand="full"
+      class="ion-margin"
+      (click)="go()"
+      >
+        Manage Restaurants
+        <ion-icon name="arrow-forward"
+        style="position: absolute; right: 0; margin: auto 10px;"></ion-icon>
+      </ion-button>
+
+
+    </ion-col>
+
+  </ion-row>
+
+</ion-content>

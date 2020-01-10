@@ -1,0 +1,70 @@
+<ion-header mode="ios">
+  <ion-toolbar>
+
+    <ion-title>
+      Order
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="ctrl.dismiss()" class="btn">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-item 
+  class="cart-item"
+  lines="none"
+  *ngFor="let item of (cart?.orderSubject | async)?.items"
+  >
+    <ion-text 
+    class="cart-quantity"
+    slot="start"
+    >x{{item?.quantity}}
+    </ion-text>
+    <ion-thumbnail 
+    class="cart-thumb"
+    slot="start"
+    >
+      <img src="{{item?.photoURL}}" alt="">
+    </ion-thumbnail>
+    <ion-label class="cart-label">
+      {{item?.name}}
+      <br>
+      <ion-note>
+        {{item?.desc}}
+      </ion-note>
+    </ion-label>
+    <ion-text 
+    class="cart-price"
+    slot="end"
+    color="primary"
+    >{{item?.price/100 | currency}}
+    </ion-text>
+  </ion-item>
+
+
+  <ion-item lines="none"
+  *ngIf="!cart.order || cart.order.items.length == 0"
+  >
+    <ion-label color="medium">
+      There are no order items.
+    </ion-label>
+  </ion-item>
+
+
+  <ion-item 
+  *ngIf="cart.order && cart.order.items.length != 0"
+  class="bt">
+    <ion-buttons slot="end">
+      <ion-button fill="solid" color="light"
+      (click)="cart.discardItems(); ctrl.dismiss()">
+      
+        <ion-text color="dark">
+          Discard
+        </ion-text> 
+        <ion-icon color="dark" name="trash"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-item>
+</ion-content>
